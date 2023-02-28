@@ -25,7 +25,7 @@ app.get("", async (req, res) => {
     } else if (date === "desc") {
       allProduct.sort("-postedAt");
     }
-    allProduct.skip((page - 1) * 4);
+    allProduct.skip((page - 1) * 4).limit(4);
     let data = await allProduct;
     res.status(201).json({ dataLength: data.length, data: data });
   } catch (err) {
