@@ -28,7 +28,7 @@ app.get("", async (req, res) => {
     }
     allProduct.skip((page - 1) * 4).limit(4);
     let data = await allProduct;
-    res.status(201).json({ dataLength, data: data });
+    res.status(201).json({ dataLength: Math.ceil(dataLength / 4), data: data });
   } catch (err) {
     console.log("err:", err);
     res.status(201).json({ message: "Something went wrong" });
