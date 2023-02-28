@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.use(cors());
 
-app.post("/", async (req, res) => {
+app.get("/", async (req, res) => {
   res.send("Welcome to olx");
 });
 
