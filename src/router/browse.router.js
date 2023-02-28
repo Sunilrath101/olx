@@ -5,6 +5,7 @@ const app = express.Router();
 
 app.get("", async (req, res) => {
   const { category, date, name, page = 1 } = req.query;
+  let dataLength = await Product.count();
   try {
     let allProduct;
     if (category) {
@@ -27,7 +28,7 @@ app.get("", async (req, res) => {
     }
     allProduct.skip((page - 1) * 4).limit(4);
     let data = await allProduct;
-    res.status(201).json({ dataLength: data.length, data: data });
+    res.status(201).json({ dataLength, data: data });
   } catch (err) {
     console.log("err:", err);
     res.status(201).json({ message: "Something went wrong" });
